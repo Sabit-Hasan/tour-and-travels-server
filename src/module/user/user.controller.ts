@@ -2,92 +2,69 @@ import { NextFunction, Request, Response } from 'express';
 import { userService } from './user.service';
 import sendResponse from '../../utils/sendResponse';
 import { StatusCodes } from 'http-status-codes';
+import catchAsync from '../../utils/catchAsync';
 
 // create user
-const createUser = async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const userInfo = req.body;
+const createUser = catchAsync(async (req, res) => {
+  const userInfo = req.body;
 
-    const result = await userService.createUser(userInfo);
+  const result = await userService.createUser(userInfo);
 
-    sendResponse(res, {
-      statusCode: StatusCodes.CREATED,
-      message: 'User created successfully!',
-      data: result,
-    });
-  } catch (error) {
-    next(error);
-  }
-};
+  sendResponse(res, {
+    statusCode: StatusCodes.CREATED,
+    message: 'User created successfully!',
+    data: result,
+  });
+});
 
 // get user
-const getUser = async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const result = await userService.getUser();
+const getUser = catchAsync(async (req, res) => {
+  const result = await userService.getUser();
 
-    sendResponse(res, {
-      statusCode: StatusCodes.OK,
-      message: 'Users retrieved successfully!',
-      data: result,
-    });
-  } catch (error) {
-    next(error);
-  }
-};
+  sendResponse(res, {
+    statusCode: StatusCodes.OK,
+    message: 'Users retrieved successfully!',
+    data: result,
+  });
+});
 
 // get single user by id
-const getSingleUser = async (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) => {
-  try {
-    const { id } = req.params;
-    const result = await userService.getSingleUser(id);
+const getSingleUser = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await userService.getSingleUser(id);
 
-    sendResponse(res, {
-      statusCode: StatusCodes.OK,
-      message: 'User retrieved successfully!',
-      data: result,
-    });
-  } catch (error) {
-    next(error);
-  }
-};
+  sendResponse(res, {
+    statusCode: StatusCodes.OK,
+    message: 'User retrieved successfully!',
+    data: result,
+  });
+});
 
 // update user by id
-const updateUser = async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const { id } = req.params;
-    const userInfo = req.body;
+const updateUser = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const userInfo = req.body;
 
-    const result = await userService.updateUser(id, userInfo);
+  const result = await userService.updateUser(id, userInfo);
 
-    sendResponse(res, {
-      statusCode: StatusCodes.OK,
-      message: 'User updated successfully!',
-      data: result,
-    });
-  } catch (error) {
-    next(error);
-  }
-};
+  sendResponse(res, {
+    statusCode: StatusCodes.OK,
+    message: 'User updated successfully!',
+    data: result,
+  });
+});
 
 // delete user by id
-const deleteUser = async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const { id } = req.params;
-    const result = await userService.deleteUser(id);
+const deleteUser = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await userService.deleteUser(id);
 
-    sendResponse(res, {
-      statusCode: StatusCodes.OK,
-      message: 'User deleted successfully!',
-      data: result,
-    });
-  } catch (error) {
-    next(error);
-  }
-};
+  sendResponse(res, {
+    statusCode: StatusCodes.OK,
+    message: 'User deleted successfully!',
+    data: result,
+  });
+});
 
 export const userController = {
   createUser,
