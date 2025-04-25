@@ -54,29 +54,29 @@ const createBooking = async (payload: TBooking): Promise<TBooking> => {
 }
 
 // Function to updateBooking
-const updateBooking = async (id: string, payload: Partial<TBooking>) => {
+// const updateBooking = async (id: string, payload: Partial<TBooking>) => {
 
-    const session = await mongoose.startSession();
-    session.startTransaction();
+//     const session = await mongoose.startSession();
+//     session.startTransaction();
 
-    try {
+//     try {
 
-        const existingBooking = await Booking.findById(id).session(session);
+//         const existingBooking = await Booking.findById(id).session(session);
 
-        if (!existingBooking) {
-            throw new Error('Booking not found!');
-        }
-
-
+//         if (!existingBooking) {
+//             throw new Error('Booking not found!');
+//         }
 
 
-    } catch (error) {
-        await session.abortTransaction();
-        await session.endSession();
 
-        throw error;
-    }
-}
+
+//     } catch (error) {
+//         await session.abortTransaction();
+//         await session.endSession();
+
+//         throw error;
+//     }
+// }
 
 export const bookingService = {
     createBooking,
