@@ -3,6 +3,13 @@ import User from './user.model';
 
 // create user
 const createUser = async (usrInfo: TUser): Promise<TUser> => {
+
+  const existingUser = await User.findOne({ email: usrInfo.email });
+
+  if (existingUser) {
+    throw new Error('User already exists!');
+  }
+
   const result = await User.create(usrInfo);
   return result;
 };

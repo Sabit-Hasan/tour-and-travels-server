@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import TTourModel, { ITourMethods, TTour } from './tour.interface';
+import { TTour } from './tour.interface';
 
 const tourSchema = new mongoose.Schema<TTour>(
   {
@@ -10,6 +10,11 @@ const tourSchema = new mongoose.Schema<TTour>(
     duration: {
       type: Number,
       required: [true, 'Please provide a duration'],
+    },
+    availableSeats: {
+      type: Number,
+      required: [true, 'Please provide available seats'],
+      default: 0,
     },
     averageRating: {
       type: Number,

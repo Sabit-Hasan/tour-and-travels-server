@@ -9,15 +9,3 @@ const catchAsync = (fun: RequestHandler) => {
 }
 
 export default catchAsync;
-
-
-type TSendResponse<T> = {
-    statusCode: number;
-    message: string;
-    data: T | T[] | null
-}
-
-
-const sendResponse = <T>(res: Response, data: TSendResponse<T>) => {
-
-}

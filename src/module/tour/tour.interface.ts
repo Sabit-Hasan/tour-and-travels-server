@@ -1,8 +1,9 @@
-import { Model } from 'mongoose';
+// import { Model } from 'mongoose';
 
 export type TTour = {
   name: string;
   duration: number;
+  availableSeats: number;
   averageRating: number;
   price: number;
   coverImage: string;
@@ -21,4 +22,4 @@ export type TTour = {
 
 // type TTourModel = Model<TTour, Record<string, unknown>, ITourMethods>
 
-export default TTourModel;
+// export default TTourModel;

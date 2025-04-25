@@ -1,4 +1,3 @@
-import { Request, Response, NextFunction } from 'express';
 import { tourService } from './tour.service';
 import { StatusCodes } from 'http-status-codes';
 import sendResponse from '../../utils/sendResponse';
